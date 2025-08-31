@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work – Isca Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Isca Design</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="clients.html">Clients</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+ <main class="work-page">
+    <section class="work-header">
+  <h2>Work</h2>
+  <div class="work-categories" id="filterBar" role="tablist" aria-label="Work categories">
+    <button class="active" data-filter="latest" role="tab" aria-selected="true">Latest Work</button>
+    <button data-filter="all" role="tab" aria-selected="false">All</button>
+    <button data-filter="branding" role="tab" aria-selected="false">Branding</button>
+    <button data-filter="logoidentity" role="tab" aria-selected="false">Logo Identity</button>
+    <button data-filter="illustration" role="tab" aria-selected="false">Illustration</button>
+    <button data-filter="motion" role="tab" aria-selected="false">Motion Graphics</button>  
+  </div>
+</section>
+
+ <section class="work-grid" id="workGrid">
+
+  <div class="project-card" data-category="branding" data-latest="true">
+    <a href="projects/branding-CFS.html">
+    <img src="images/branding-CFS-tshirt-mockup.jpg" alt="CFS Branding" />
+    <div class="overlay">
+      <h3>Community Fitness Snevern</h3>
+      <p>Branding</p>
+    </div>
+  </a>
+</div>
+
+<div class="project-card" data-category="logoidentity" data-latest="true">
+    <a href="projects/logoidentity-CFS.html">
+    <img src="images/logoidentity-CFS-color-browncream.jpg" alt="CFS Logo Identity" />
+    <div class="overlay">
+      <h3>Community Fitness Snevern</h3>
+      <p>Logo Identity</p>
+    </div>
+  </a>
+</div>
+
+  <div class="project-card" data-category="branding">
+    <a href="projects/branding-innature.html">
+    <img src="images/brandidentity-innature-photologo.jpg" alt="Innature Branding" />
+    <div class="overlay">
+      <h3>Innature Foundation</h3>
+      <p>Branding</p>
+    </div>
+  </a>
+</div>
+
+<div class="project-card" data-category="logoidentity">
+    <a href="projects/logoidentity-innature.html">
+    <img src="images/logoidentity-innature-iconmark.jpg" alt="Innature Logo Identity" />
+    <div class="overlay">
+      <h3>Innature Foundation</h3>
+      <p>Logo Identity</p>
+    </div>
+  </a>
+</div>
+
+ <div class="project-card" data-category="illustration">
+        <a href="projects/illustrations-tshirts.html">
+          <img src="images/illustration-chicken-animalportrait.jpg" alt="Chicken – Illustration">
+          <div class="overlay">
+            <h3>Chicken</h3>
+            <p>Illustration</p>
+          </div>
+        </a>
+      </div>
+
+<div class="project-card" data-category="motion" data-latest="true">
+  <a href="projects/motion-EXAMPLE.html">
+    <img src="images/motion-thumbnail.jpg" alt="Motion Graphic Example" />
+    <div class="overlay">
+      <h3>Example Motion Project</h3>
+      <p>Motion Graphic</p>
+    </div>
+  </a>
+</div>      
+
+      <!-- Add more project cards as needed -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Isca Design</p>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBar = document.getElementById('filterBar');
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+
+    function applyFilter(filter) {
+      cards.forEach(card => {
+        const category = card.dataset.category;
+        const isLatest = card.dataset.latest === 'true';
+        const show =
+          filter === 'all' ? true :
+          filter === 'latest' ? isLatest :
+          category === filter;
+
+        card.classList.toggle('is-hidden', !show);
+      });
+    }
+
+    filterBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-filter]');
+      if (!btn) return;
+
+      filterBar.querySelectorAll('button').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      applyFilter(btn.dataset.filter);
+    });
+
+    applyFilter('latest'); // Initial filter
+  });
+</script>
+
+</body>
+</html>
